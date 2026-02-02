@@ -1,0 +1,115 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new FileNotFoundException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 34
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        disable 'InvalidPackage'
+    }
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+    configurations {
+        compile.exclude group: 'org.jetbrains', module: 'annotations'
+        all {
+            exclude group: 'java.xml.bind', module: 'jaxb-api'
+            resolutionStrategy {
+                force 'androidx.appcompat:appcompat:1.6.1'
+                force 'androidx.appcompat:appcompat-resources:1.6.1'
+                force 'com.google.android.material:material:1.9.0'
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+    defaultConfig {
+        applicationId "com.myrex11.play"
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode 1 // TODO: this version for new upload build after live
+        versionName "1.0.1"
+        multiDexEnabled true
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file("C:/Users/RG Infotech/Desktop/projects/myrex11/android/app/keystore/myrex11.keystore")
+            storePassword "myrex11"
+            keyAlias "myrex11_key"
+            keyPassword "myrex11"
+        }
+
+        debug {
+            storeFile file("C:/Users/RG Infotech/Desktop/projects/myrex11/android/app/keystore/myrex11.keystore")
+            storePassword "myrex11"
+            keyAlias "myrex11_key"
+            keyPassword "myrex11"
+        }
+    }
+    buildTypes {
+        release {
+            debuggable false
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat-resources:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.google.android.recaptcha:recaptcha:18.4.0'
+}

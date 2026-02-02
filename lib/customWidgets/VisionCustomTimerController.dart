@@ -1,0 +1,64 @@
+import 'package:flutter/material.dart';
+
+import 'VisionCustomTimer.dart';
+
+
+/// Controller for CustomTimer.
+class VisionCustomTimerController {
+  /// The callback function that executes when the `start` method is called.
+  VoidCallback? _onStart;
+
+  /// The callback function that executes when the `pause` method is called.
+  VoidCallback? _onPause;
+
+  /// The callback function that executes when the `reset` method is called.
+  VoidCallback? _onReset;
+
+  CustomTimerState _state = CustomTimerState.finished;
+
+  /// The current state of the timer.
+  ///
+  /// This allows you to create custom functions or conditions. For example:
+  ///
+  /// ``` dart
+  ///   if(_controller.state == CustomTimerState.finished)...
+  /// ```
+  CustomTimerState get state {
+    return _state;
+  }
+
+  set state(value) {
+    this._state = value;
+  }
+
+  /// Constructor.
+  VisionCustomTimerController();
+
+  /// Dispose method.
+  dispose() {
+    _onStart = null;
+    _onPause = null;
+    _onReset = null;
+  }
+
+  /// Start the timer.
+  start() {
+    this._onStart!();
+  }
+
+  onSetStart(VoidCallback onStart) => this._onStart = onStart;
+
+  /// Set timer in pause.
+  pause() {
+    this._onPause!();
+  }
+
+  onSetPause(VoidCallback onPause) => this._onPause = onPause;
+
+  /// Reset the timer.
+  reset() {
+    this._onReset!();
+  }
+
+  onSetReset(VoidCallback onReset) => this._onReset = onReset;
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">myrex11</string>
+    <string name="facebook_app_id">795589905695683</string>
+    <string name="fb_login_protocol_scheme">fb795589905695683</string>
+    <string name="facebook_client_token">cf0e5b2291205c8eed588905e44ec4e9</string>
+</resources>

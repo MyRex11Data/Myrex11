@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "391045537714",
+    "project_id": "myrex11-a9b3c",
+    "storage_bucket": "myrex11-a9b3c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391045537714:android:bae35a56388f32e88d8eab",
+        "android_client_info": {
+          "package_name": "com.myrex11.play"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391045537714-6usc52p88i2lq2dhfrdsbdth99ck4tdc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.myrex11.play",
+            "certificate_hash": "d89a0a02de9b5bdd20f0a72506b44f3b0880ba46"
+          }
+        },
+        {
+          "client_id": "391045537714-1v6jhsju0r84g17q0o7bgo4c68p1g2ip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcazQ-15HitZkBxmiK8Q5fu2OoVAcm4e0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391045537714-1v6jhsju0r84g17q0o7bgo4c68p1g2ip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
