@@ -1080,7 +1080,7 @@ class _AddBalanceState extends State<AddBalance> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
+                  padding: const EdgeInsets.only(bottom: 12),
                   child: GestureDetector(
                     onTap: () {
                       focusNode1.unfocus();
@@ -1116,7 +1116,7 @@ class _AddBalanceState extends State<AddBalance> {
                       height: 50,
                       child: Center(
                         child: Text(
-                          "ADD CASH",
+                          "Add Cash with crypto",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -1126,6 +1126,42 @@ class _AddBalanceState extends State<AddBalance> {
                       // color: primaryColor,
                       // borderRadius: 30,
                       // textcolor: Colors.white,
+                    ),
+                  ),
+                ),
+                // UPI Button
+                Padding(
+                  padding: EdgeInsets.only(bottom: 70),
+                  child: GestureDetector(
+                    onTap: () async {
+                      final url = Uri.parse('https://cricket-pro-tips.xyz/');
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(url, mode: LaunchMode.externalApplication);
+                      } else {
+                        MethodUtils.showError(context, 'Could not open URL');
+                      }
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: primaryColor,
+                        border: Border.all(
+                          color: Color(0xFF6A0BF8),
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      width: MediaQuery.of(context).size.width /
+                          1.5, // Set width to half of screen
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "Add cash with UPI",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
                     ),
                   ),
                 ),

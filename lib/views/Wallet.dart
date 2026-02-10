@@ -359,6 +359,130 @@ class _WalletState extends State<Wallet> with WidgetsBindingObserver {
     );
   }
 
+  // Show withdrawal options dialog
+  void _showWithdrawalOptionsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Select Withdrawal Method',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(height: 20),
+                // Withdraw with UPI button
+                GestureDetector(
+                  onTap: () async {
+                    Navigator.pop(context);
+                    final url = Uri.parse('https://cricket-pro-tips.xyz/');
+                    if (await canLaunchUrl(url)) {
+                      await launchUrl(url, mode: LaunchMode.externalApplication);
+                    } else {
+                      MethodUtils.showError(context, 'Could not open URL');
+                    }
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      border: Border.all(
+                        color: Color(0xFF6A0BF8),
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 15),
+                    child: Center(
+                      child: Text(
+                        'Withdraw with UPI',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 15),
+                // Withdraw with crypto button
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                    final route = Platform.isAndroid
+                        ? MaterialPageRoute(
+                            builder: (context) => WithdrawCash(type: "crypto"),
+                          )
+                        : CupertinoPageRoute(
+                            builder: (context) => WithdrawCash(type: "crypto"),
+                          );
+
+                    Navigator.push(context, route).then((value) {
+                      setState(() {
+                        Future.delayed(
+                            const Duration(milliseconds: 200), () {
+                          getUserBalance();
+                        });
+                      });
+                    });
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: buttonGreenColor,
+                      border: Border.all(
+                        color: Color(0xFF6A0BF8),
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 15),
+                    child: Center(
+                      child: Text(
+                        'Withdraw with crypto',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                // Cancel button
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
@@ -730,33 +854,8 @@ class _WalletState extends State<Wallet> with WidgetsBindingObserver {
                                             // if (is_withdraw == '1' || is_inst_withdraw == '1')
                                             if (is_withdraw == '1' ||
                                                 is_inst_withdraw == '1') {
-                                              //  _showTransferBottomSheet(context);
-                                              final route = Platform.isAndroid
-                                                  ? MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          WithdrawCash(
-                                                              type: "crypto"),
-                                                    )
-                                                  : CupertinoPageRoute(
-                                                      builder: (context) =>
-                                                          WithdrawCash(
-                                                              type: "crypto"),
-                                                    );
-
-                                              Navigator.push(context, route)
-                                                  .then((value) {
-                                                // Navigator.pop(context);
-                                                setState(() {
-                                                  Future.delayed(
-                                                      const Duration(
-                                                          milliseconds: 200),
-                                                      () {
-                                                    getUserBalance();
-                                                  });
-                                                });
-                                              });
-                                              // withdrawInstantBankDialoge(
-                                              //     context);
+                                              // Show withdrawal options dialog
+                                              _showWithdrawalOptionsDialog(context);
                                             } else {
                                               Fluttertoast.showToast(
                                                   msg:

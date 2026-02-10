@@ -705,7 +705,7 @@ class _MySplashState extends State<MyApp> {
         );
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
+      onPopInvoked: (didPop) {
         if (!didPop) {
           SystemNavigator.pop();
         }

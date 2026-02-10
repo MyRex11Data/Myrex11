@@ -33,6 +33,7 @@
 .pub-cache/
 .pub/
 /build/
+pubspec.lock
 
 # Web related
 
@@ -46,3 +47,39 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Android/Gradle related
+**/android/local.properties
+**/android/.gradle/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/.gradle
+**/android/captures/
+**/android/gradle/
+**/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+
+# Gradle build outputs
+**/.gradle/
+**/build/
+**/buildOutputCleanup/
+**/.gradle/buildOutputCleanup/cache.properties
+**/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+**/.gradle/*/checksums/
+**/.gradle/*/executionHistory/
+**/.gradle/*/fileHashes/
+**/.gradle/*/fileContent/
+**/.gradle/file-system.probe
+**/.gradle/vcs-1/
+*.lock
+*.bin
+*.probe
+
+# Generated plugin files
+**/linux/flutter/generated_plugins.cmake
+**/linux/flutter/generated_plugin_registrant.cc
+**/linux/flutter/generated_plugin_registrant.h
+**/macos/Flutter/GeneratedPluginRegistrant.swift
+**/windows/flutter/generated_plugins.cmake
+**/windows/flutter/generated_plugin_registrant.cc
+**/windows/flutter/generated_plugin_registrant.h
+**/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java

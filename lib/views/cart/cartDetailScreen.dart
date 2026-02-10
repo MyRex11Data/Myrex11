@@ -428,7 +428,6 @@ class _CartDetailScreenState extends State<CartDetailScreen> {
               isExpand = value;
             });
           },
-          showTrailingIcon: false,
           tilePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
           childrenPadding: const EdgeInsets.only(bottom: 12),
           title: Row(

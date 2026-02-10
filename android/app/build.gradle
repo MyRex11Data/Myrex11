@@ -61,7 +61,7 @@ android {
     }
     defaultConfig {
         applicationId "com.myrex11.play"
-        minSdkVersion 21
+        minSdkVersion flutter.minSdkVersion
         targetSdkVersion 34
         versionCode 1 // TODO: this version for new upload build after live
         versionName "1.0.1"
@@ -70,21 +70,23 @@ android {
             abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
         }
     }
+    
     signingConfigs {
         release {
-            storeFile file("C:/Users/RG Infotech/Desktop/projects/myrex11/android/app/keystore/myrex11.keystore")
+            storeFile file("keystore/myrex11.keystore")
             storePassword "myrex11"
             keyAlias "myrex11_key"
             keyPassword "myrex11"
         }
 
         debug {
-            storeFile file("C:/Users/RG Infotech/Desktop/projects/myrex11/android/app/keystore/myrex11.keystore")
+            storeFile file("keystore/myrex11.keystore")
             storePassword "myrex11"
             keyAlias "myrex11_key"
             keyPassword "myrex11"
         }
     }
+
     buildTypes {
         release {
             debuggable false
